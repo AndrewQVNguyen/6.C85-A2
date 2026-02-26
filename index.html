@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>A2: Transit-Oriented Development</title>
+<style>
+  :root {
+    --page-width: 900px;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: "Times New Roman", Times, serif;
+    line-height: 1.35;
+    background: #fff;
+    color: #111;
+  }
+  main {
+    max-width: var(--page-width);
+    margin: 0 auto;
+    padding: 48px 24px 64px;
+  }
+  h1 {
+    font-size: 28px;
+    text-align: center;
+    margin: 0 0 6px;
+    font-weight: 700;
+  }
+  .byline {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+  .byline div {
+    margin: 2px 0;
+    font-size: 16px;
+  }
+  h2 {
+    font-size: 22px;
+    margin: 26px 0 10px;
+    font-weight: 700;
+  }
+  h3 {
+    font-size: 18px;
+    margin: 18px 0 8px;
+    font-weight: 700;
+  }
+  p {
+    margin: 0 0 10px;
+  }
+  ol {
+    margin: 0 0 10px 22px;
+  }
+  figure {
+    margin: 14px auto 18px;
+    text-align: center;
+  }
+  figure img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+  figcaption {
+    margin-top: 8px;
+    font-size: 14px;
+  }
+  .subfig-row {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .subfigure {
+    flex: 1 1 340px;
+    max-width: 420px;
+  }
+  .subfigure img {
+    width: 100%;
+    height: 220px; /* approx 5cm */
+    object-fit: contain;
+    background: transparent;
+  }
+  .subcap {
+    margin-top: 6px;
+    font-size: 14px;
+  }
+  .figure-number {
+    font-variant-numeric: tabular-nums;
+  }
+  .cite {
+    text-decoration: none;
+  }
+  .refs {
+    margin-top: 18px;
+  }
+  .refs h2 {
+    margin-top: 28px;
+  }
+  .refitem {
+    margin: 0 0 8px;
+  }
+  @media print {
+    main { padding: 36px 48px; }
+    a { color: inherit; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>A2: Transit-Oriented Development</h1>
+  <div class="byline">
+    <div>Andrew Q. Nguyen</div>
+    <div>Febuary 27th 2026</div>
+  </div>
+
+  <h2>1 Introduction</h2>
+
+  <h3>1.1 Context</h3>
+  <p>
+    Transit-Oriented Development (TOD) refers to efforts to spur development by improving access to public transportation.<a class="cite" href="#ref5">[5]</a>
+    Over the past decade, the City of Boston has attempted several TOD strategies to combat its ongoing housing shortage crisis.<a class="cite" href="#ref4">[4]</a>
+    This report will explore the link between transportation access and housing development in Boston over the last two decades, examining its effectiveness and highlighting key factors linking the two.
+  </p>
+
+  <h3>1.2 Data Sets</h3>
+  <p>
+    To develop an understanding of how Transit-Oriented Development has affected housing development in Boston, two key datasets will be used.
+    The first dataset contains details on Boston Public Transit routes and stops from the General Transit Feed Specification (GTFS) database.
+    It provides information on route location, route type (e.g., light rail, subway, bus, ferry), stop location, and Massachusetts Bay Transit Authority (MBTA) identification data.
+    The second data set contains information on residential property sales in Boston between 2000 and 2023, including the address, sale price, and building type.
+  </p>
+
+  <h3>1.3 Investigative Questions</h3>
+  <p>This report will address the following questions regarding Transit-Oriented Development in Boston.</p>
+  <ol>
+    <li>Is access to public transit equally spread across Boston’s residential areas? Are there any transit deserts?</li>
+    <li>Which areas of Boston have seen the greatest residential property development? Is development spread equally across Boston?</li>
+    <li>Does proximity to public transportation have an effect on property development? Do the different forms of public transportation affect property development equally?</li>
+  </ol>
+  <p>
+    Transit-Oriented Development (TOD) relies on the presence of accessible and extensive public transit hubs to incentivize development.
+    To assess the effectiveness of Boston's TOD efforts, the city's public transportation accessibility must be evaluated first.
+    As a result, question one seeks to determine whether access to transportation is evenly distributed across Boston and whether any gaps in public transportation, or transit deserts, exist.
+    Following this, question two seeks to determine whether residential development is evenly distributed across Boston, with the goal of identifying key areas of housing development.
+    Finally, question three seeks to determine whether these housing developments coincide with transit lines, identify which regions Boston's TOD efforts have been effective in, and identify what factors can improve future efforts.
+  </p>
+
+  <h2>2 Data Overview</h2>
+  <p>
+    Before answering any of our investigative questions, we must first develop an understanding of our data sets and assess their quality and limitations.
+  </p>
+
+  <h3>2.1 GTFS Boston Transit Data</h3>
+  <p>
+    The GTFS Boston Transit Data provides the numbers, locations, and types of MBTA routes and stops.
+    To assess the extent to which these routes are detailed, we first overlay the route information onto a map of Boston and its municipalities.
+  </p>
+
+  <figure id="fig1">
+    <img src="assets/Transportation%20lines%20Visualized.png" alt="Map of Public Transit Routes in the Greater Boston Metropolitan Area" />
+    <figcaption><span class="figure-number">Figure 1:</span> Map of Public Transit Routes in the Greater Boston Metropolitan Area</figcaption>
+  </figure>
+
+  <p>
+    The figure above shows how GTFS categorizes each route into 5 categories: Commuter Rail, Ferry, Light Rail, Subway, and Bus, as well as their distribution within the Boston area.
+    Furthermore, the figure below illustrates how routes are further classified by route description.
+    Comparing this with route information published by the Massachusetts Bay Transportation Authority reveals that the GTFS data accurately captures the nature and locations of these transit lines and thus can be considered an accurate representation.<a class="cite" href="#ref1">[1]</a>
+  </p>
+
+  <figure id="fig2">
+    <img src="assets/Number%20of%20Routes%20per%20Transport%20Category.png" alt="Number of Routes by Route Description" />
+    <figcaption><span class="figure-number">Figure 2:</span> Number of Routes by Route Description</figcaption>
+  </figure>
+
+  <p>
+    Access points for these transit lines are also categorized by transportation type.
+    The figure below overlays transit stop data on transit lines, focusing particularly on the Boston municipality.
+    The data also indicate which transit stops are wheelchair accessible, although this is not shown in the figure below.
+  </p>
+
+  <figure id="fig3">
+    <img src="assets/Stops%20Visualized.png" alt="Transit Stops Overlaid with Transit Lines" />
+    <figcaption><span class="figure-number">Figure 3:</span> Transit Stops Overlaid with Transit Lines</figcaption>
+  </figure>
+
+  <p>
+    One limitation of this data, however, is that it only covers public transportation.
+    It does not account for avenues for private transportation, such as roads and highways, which may also be developed to facilitate development and are more prominent outside the Boston municipality.
+    Additionally, there is limited information on the throughput each mode can support.
+    As a result, while it may be easy to determine whether an area has access to public transit, it is significantly harder to assess whether this mode of transit is sufficient for the local population.
+  </p>
+
+  <h3>2.2 Residential Sales Data</h3>
+  <p>
+    The second data set used in this analysis is residential sales data for Boston from 2000 to 2023.
+    To assess the completeness of this data, both the temporal distribution of these data points and the price of each group are examined.
+  </p>
+
+  <figure id="fig4">
+    <div class="subfig-row">
+      <div class="subfigure">
+        <img src="assets/Temporal%20Distribution%20of%20Sales.png" alt="Temporal Distribution of Sales" />
+        <div class="subcap">(a) Temporal Distribution of Sales</div>
+      </div>
+      <div class="subfigure">
+        <img src="assets/Sales%20by%20Price.png" alt="Sales by Price" />
+        <div class="subcap">(b) Sales by Price</div>
+      </div>
+    </div>
+    <figcaption><span class="figure-number">Figure 4:</span> Temporal and Price Distribution of Data Points</figcaption>
+  </figure>
+
+  <p>
+    Figure 4a) shows the number of residential sales in Boston per month between 2000 and 2023.
+    Importantly, it reveals no gaps in the sales data during the relevant timeframe, indicating that this dataset is a good representation of all sales during the relevant period.
+    Figure 4b) plots the number of property sales per price, and demonstrates that the data set covers a wide range of properties, indicating it is well-balanced across different property types.
+    In the future, it may also be interesting to examine whether the average price of property sales has increased over time and to balance these figures against inflation to determine the level of gentrification in Boston, but that is beyond the scope of this analysis.
+  </p>
+
+  <figure id="fig5">
+    <img style="max-width: 90%;" src="assets/Spatial%20Distribution%20of%20Residential%20Sales.png" alt="Spatial Distribution of Residential Sale Data" />
+    <figcaption><span class="figure-number">Figure 5:</span> Spatial Distribution of Residential Sale Data</figcaption>
+  </figure>
+
+  <p>
+    Where the dataset falls short is in its spatial distribution of data points.
+    Figure 5 above overlays residential sales over a municipal map of the Greater Boston Metropolitan Area, with each red dot representing a sale documented in the data set.
+    It reveals that most data points are clustered within the Boston municipality, with few in the Greater Boston Area.
+    While this could theoretically indicate a lack of residential sales in the Greater Boston Area, it is far more likely that the data set is limited to the Boston municipality.
+    As a result, analysis of TOD using this data set must be constrained to these municipal limits.
+    Additionally, the data include property sales rather than the development of new properties, and as such, it may not capture the development of new residential areas.
+    This, however, can be mitigated to some extent by tallying only unique addresses that appear in the sales data.
+  </p>
+
+  <h2>3 Data Analysis</h2>
+
+  <h3>3.1 Question 1: Transit Accessibility</h3>
+  <p>
+    To assess public transportation accessibility in Boston, Figure 3 is modified to highlight the borders of the Boston municipality and to distinguish between dedicated transit infrastructure and transit on public roads.
+  </p>
+
+  <figure id="fig6">
+    <img src="assets/Transit%20Lines%20w%20Stops%20with%20Boston%20Highlighted.png" alt="Map of Boston's Public Transportation Lines" />
+    <figcaption><span class="figure-number">Figure 6:</span> Map of Boston's Public Transportation Lines</figcaption>
+  </figure>
+
+  <p>
+    Figure 6 above demonstrates that, with the exception of land reserved for Logan International Airport and several islands in Massachusetts Bay, Boston is covered with public transportation routes.
+    Several important subway and rapid transit lines connect Boston with densely populated municipalities to its north, such as Cambridge and Somerville, while larger commuter rail lines connect Boston with other municipalities and metroplexes.
+    Its bus lines, meanwhile, cover areas that the rail and subway lines miss, running both parallel to and linking subway and rail lines. lines.
+  </p>
+
+  <p>
+    It is important to note, however, that bus networks in southern districts further away from the city center are much less dense than those in the north.
+    This, combined with the greater density of commuter rail stops, suggests a greater reliance on faster rail and rapid transit lines than on bus lines in these regions.
+  </p>
+
+  <h3>3.2 Question 2: Spatial Distribution of Housing Development</h3>
+  <p>
+    Overlaying Figure 6 with a heatmap of data presented in Figure 5 allows us to determine which areas of Boston have seen the greatest residential property development and whether proximity to public transportation affects property development.
+  </p>
+
+  <figure id="fig7">
+    <img src="assets/Boston%20Residential%20Development%20Heatmap.png" alt="Heat Map of Housing Development Data Overlaid, with certain neighborhoods annotated" />
+    <figcaption><span class="figure-number">Figure 7:</span> Heat Map of Housing Development Data Overlaid, with certain neighborhoods annotated <a class="cite" href="#ref2">[2]</a></figcaption>
+  </figure>
+
+  <p>
+    Figure 7 shows the concentration of housing developments in Boston overlaid on transportation routes, with red indicating high concentration and blue low concentration.
+    Note, since Tableau cannot produce legends for heatmaps, Figure 8, showing a hex map quantifying the number of residential points within each square, is included for reference below.
+  </p>
+
+  <figure id="fig8">
+    <img src="assets/Res%20Dat%20Hex.png" alt="Hex Map of Housing Development Data" />
+    <figcaption><span class="figure-number">Figure 8:</span> Hex Map of Housing Development Data. Note that each box denotes an arbitrary area in which the number of unique addresses that appear in the development data is tallied, and the visualization of MBTA stops has been removed to reduce clutter.</figcaption>
+  </figure>
+
+  <p>
+    The figures indicate an unequal distribution in housing development across Boston's districts.
+    High-density districts to the north, such as Beacon Hill, Back Bay, and Bay Village, have recorded several thousand residential sales with distinct addresses during the sales period, whereas other southern districts, like West Roxbury and Dorchester, have experienced only a few hundred sales.
+  </p>
+
+  <p>
+    A few factors may explain this unequal distribution in housing development.
+    Northern districts, such as Downtown and Chinatown, have some of Boston's highest job concentrations.<a class="cite" href="#ref3">[3]</a>
+    As a result, regions adjacent to these regions, such as Back Bay and Beacon Hill, may be very attractive for incoming residents and lucrative for developers to invest in.
+    Additionally, Northern Boston and Southern Cambridge are home to several large universities, including Boston University and MIT, and real estate investors may be incentivized to develop the surrounding areas to capitalize on incoming students.
+  </p>
+
+  <p>
+    It may also be interesting to examine whether property values are evenly distributed across Boston or whether certain areas prefer high-value housing, but that is beyond the scope of this report.
+  </p>
+
+  <h3>3.3 Question 3: Public Transit and Housing Development</h3>
+  <p>
+    One commonality between the sparsely and densely developed districts is the presence of transit lines near the development zones.
+    Figure 7 illustrates how zones of development in northern districts are often crisscrossed by bus lines, while those in the south are often centered around train stops.
+  </p>
+
+  <p>
+    This difference may be attributable to differences in proximity to major employment centers and to the varying speeds of different transit modes.
+    Because southern neighborhoods are located farther from job centers, residents there may place a higher premium on access to subways and rapid transit, given their longer commutes.
+    By contrast, individuals living closer to employment hubs may be more inclined to rely on bus service, as their travel distances are shorter.
+  </p>
+
+  <h2>4 Conclusion</h2>
+  <p>
+    Despite Boston's efforts at Transit-Oriented Development, housing development remains unequally distributed throughout the city.
+    Certain areas, such as the Northern districts near job centers like Downtown and Chinatown, have seen an explosion of growth over the past two decades, while neighborhoods on the periphery have experienced much slower growth.
+    While all areas are connected by transit lines, the southern districts rely more on faster modes such as commuter rail and subway lines.
+    This could partly explain the concentration of development around these rapid transit hubs in the south, in contrast to the development around bus lines seen in the north.
+    As a result, one could posit that, for Boston to better develop areas farther from the city center, greater emphasis should be placed on developing these high-speed transit avenues.
+  </p>
+
+  <div class="refs">
+    <h2>References</h2>
+    <div class="refitem" id="ref1">[1] Massachusetts Bay Transportation Authority. <em>Rapid Transit and Frequent Bus Routes</em>. mbta.com, 2026.</div><div class="refitem" id="ref2">[2] Office of Planning City of Boston and Development. <em>Boston Streets and Neighborhood</em>. Bostonplans.org, 2019.</div><div class="refitem" id="ref3">[3] Office of Planning City of Boston and Development. <em>Payroll Enrollement Locations in Boston</em>. Bostonplans.org, 2021.</div><div class="refitem" id="ref4">[4] Greystone Real Estate Advisory Group. <em>Transit Oriented Development, The T in TOD</em>. 2026.</div><div class="refitem" id="ref5">[5] World Bank Group. <em>Transforming the Urban Space Through Transit-Oriented Development: The 3V Approach</em>. 2026.</div>
+  </div>
+
+</main>
+</body>
+</html>
